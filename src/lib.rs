@@ -1,8 +1,9 @@
 #![allow(clippy::missing_safety_doc)]
 
-pub mod block;
 pub mod elf_loader;
 pub mod elf_loader_flatbuffers;
+pub mod instr_flatbuffers;
+pub mod block;
 pub mod fuzzing_entrypoints;
 pub mod pack;
 mod shred_parse;
@@ -392,6 +393,20 @@ pub mod elf_generated {
 )]
 pub mod metadata_generated {
     include!(concat!(env!("OUT_DIR"), "/metadata_generated.rs"));
+    pub use self::org::solana::sealevel::v_2::*;
+}
+
+#[allow(
+    unused_imports,
+    dead_code,
+    clippy::default_trait_access,
+    clippy::derivable_impls,
+    clippy::needless_lifetimes,
+    clippy::used_underscore_binding,
+    clippy::extra_unused_lifetimes
+)]
+pub mod instr_generated {
+    include!(concat!(env!("OUT_DIR"), "/instr_generated.rs"));
     pub use self::org::solana::sealevel::v_2::*;
 }
 
